@@ -1,1 +1,5 @@
 package learn
+
+func StringFormatting() {
+
+}
