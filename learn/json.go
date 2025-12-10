@@ -3,6 +3,8 @@ package learn
 import (
 	"encoding/json"
 	"fmt"
+	"os"
+	"strings"
 )
 
 type response1 struct {
@@ -57,5 +59,21 @@ func JSON() {
 
 	strs := dat["strs"].([]interface{})
 	str1 := strs[0].(string)
+	fmt.Println(str1)
+
+	str := `{"page": 1, "fruits": ["apple", "peach"]}`
+	res := response2{}
+	json.Unmarshal([]byte(str), &res)
+	fmt.Println(res)
+	fmt.Println(res.Fruits[0])
+
+	enc := json.NewEncoder(os.Stdout)
+	d := map[string]int{"apple": 5, "lettuce": 9}
+	enc.Encode(d)
+
+	dec := json.NewDecoder(strings.NewReader(str))
+	res1 := response2{}
+	dec.Decode(&res1)
+	fmt.Println(res1)
 
 }
