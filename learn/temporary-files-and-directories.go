@@ -3,6 +3,7 @@ package learn
 import (
 	"fmt"
 	"os"
+	"path/filepath"
 )
 
 func TempoFilesAndDirectories() {
@@ -13,5 +14,16 @@ func TempoFilesAndDirectories() {
 
 	defer os.Remove(f.Name())
 
-	_, err = f.Write()
+	_, err = f.Write([]byte{1, 2, 3, 4})
+	check(err)
+
+	dname, err := os.MkdirTemp("", "sampledir")
+	check(err)
+	fmt.Println("Temp dir name:", dname)
+
+	defer os.RemoveAll(dname)
+
+	fname := filepath.Join(dname, "file1")
+	err = os.WriteFile(fname, []byte{1, 2, 3}, 01231)
+	check(err)
 }

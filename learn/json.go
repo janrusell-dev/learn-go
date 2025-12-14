@@ -31,7 +31,7 @@ func JSON() {
 
 	slcD := []string{"asdsd", "asdasdas", "gsdfdsf"}
 	slcB, _ := json.Marshal(slcD)
-	fmt.Printf(string(slcB))
+	fmt.Println(string(slcB))
 
 	mapD := map[string]int{"asdasd": 69, "fgfdgfd": 420}
 	mapB, _ := json.Marshal(mapD)
